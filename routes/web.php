@@ -18,3 +18,12 @@ Route::get('/', function () {
         'user' => "Joe doh"
     ]);
 });
+
+Route::get('/users', function () {
+    sleep(5);
+    return inertia('Users');
+});
+
+Route::get('/settings', function () {
+    return inertia('Settings');
+});
