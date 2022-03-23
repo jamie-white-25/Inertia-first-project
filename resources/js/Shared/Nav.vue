@@ -41,9 +41,18 @@
       <nav
         class="md:ml-auto flex flex-wrap items-center text-base justify-center"
       >
-        <Link class="mr-5 hover:text-gray-900" href="/">Home</Link>
-        <Link class="mr-5 hover:text-gray-900" href="/users">Users</Link>
-        <Link class="mr-5 hover:text-gray-900" href="/settings">Settings</Link>
+        <nav-link href="/" :active="$page.component == 'Home'">Home</nav-link>
+        <nav-link href="/users" :active="$page.component == 'Users'">Users</nav-link>
+        <nav-link href="/settings" :active="$page.component == 'Settings'">Settings</nav-link>
+        <Link
+          class="mr-5 hover:text-gray-900"
+          href="/logout"
+          method="post"
+          as="button"
+          :data="{ data: 'passed data' }"
+          >Logout</Link
+        >
+        {{ $page }}
       </nav>
       <button
         class="
@@ -80,6 +89,7 @@
 
 <script setup>
 import { Link } from "@inertiajs/inertia-vue3";
+import NavLink from "../Shared/NavLink.vue";
 </script>
 
 <style>

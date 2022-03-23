@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,10 +21,11 @@ Route::get('/', function () {
 });
 
 Route::get('/users', function () {
-    sleep(5);
     return inertia('Users');
 });
 
 Route::get('/settings', function () {
     return inertia('Settings');
 });
+
+Route::post('/logout', fn (Request $request) => dd($request->data));
