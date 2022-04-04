@@ -1,12 +1,16 @@
 <template>
-  <div>
+  <layout>
     <Nav />
     <h1>Users</h1>
-  </div>
+    <p>{{ time }}</p>
+  </layout>
 </template>
 
 <script setup>
-import Nav from "../Shared/Nav.vue";
+import Layout from "../Shared/Layout.vue";
+const props = defineProps({
+  time: String,
+});
 </script>
 
 <style>

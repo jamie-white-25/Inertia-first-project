@@ -1,7 +1,10 @@
 <template>
-  <Link class="mr-5 px-3 hover:text-gray-900" :class="{ 'bg-green-50': active }"
-    ><slot
-  /></Link>
+  <Link
+    class="mr-5 px-3 hover:text-gray-900 text-gray-600"
+    :class="{ 'text-teal-800': active }"
+  >
+    <slot />
+  </Link>
 </template>
 
 <script setup>

@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <Nav />
+  <layout>
     <h1>Setting</h1>
-  </div>
+  </layout>
 </template>
 
 <script setup>
-import Nav from "../Shared/Nav.vue";
+import Layout from "../Shared/Layout.vue";
 </script>
 
 <style>
