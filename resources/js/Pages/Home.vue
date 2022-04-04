@@ -109,12 +109,6 @@ const props = defineProps({
 });
 </script>
 
-// default layout
-<script>
-export default {
-  layout: Layout,
-};
-</script>
 
 <style>
 </style>
