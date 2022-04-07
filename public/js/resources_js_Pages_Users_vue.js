@@ -212,10 +212,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: link,
       href: link.url,
       innerHTML: link.label,
-      "class": "relative inline-flex items-center px-2 py-2 rounded-md border border-gray-300 text-sm font-medium text-gray-600 hover:bg-gray-50"
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["relative inline-flex items-center px-2 py-2 rounded-md border border-gray-300 text-sm font-medium text-gray-600 hover:bg-gray-50", {
+        'bg-teal-600 text-white': link.active
+      }])
     }, null, 8
     /* PROPS */
-    , ["href", "innerHTML"]);
+    , ["href", "innerHTML", "class"]);
   }), 128
   /* KEYED_FRAGMENT */
   )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Current: \"z-10 bg-indigo-50 border-indigo-500 text-indigo-600\", Default: \"bg-white border-gray-300 text-gray-500 hover:bg-gray-50\" ")])])])])], 2112
