@@ -1,9 +1,7 @@
 <template>
   <div class="">
-  <Head> 
-    <title>Does this work? </title>
-      <meta type="description" content="this is a home" head-key="description" />
-  </Head>
+    <Head title="Home" />
+
     <section class="text-gray-600 body-font mt-16">
       <div class="container px-5 py-24 mx-auto flex flex-col">
         <div class="lg:w-4/6 mx-auto">
@@ -105,10 +103,6 @@
 
 <script setup>
 import { ref } from "vue";
-import { Link } from "@inertiajs/inertia-vue3";
-import Layout from "../Shared/Layout.vue";
-
-
 
 const props = defineProps({
   user: String,

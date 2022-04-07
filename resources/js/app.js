@@ -1,7 +1,7 @@
 require('./bootstrap');
 
 import { createApp, h } from 'vue'
-import { createInertiaApp, Head } from '@inertiajs/inertia-vue3'
+import { createInertiaApp, Head, Link } from '@inertiajs/inertia-vue3'
 import { InertiaProgress } from "@inertiajs/progress";
 import Layout from "./Shared/Layout.vue"
 
@@ -16,6 +16,7 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .component("Head", Head)
+            .component("Link", Link)
             .mount(el)
     },
     title: title => "Website - " + title

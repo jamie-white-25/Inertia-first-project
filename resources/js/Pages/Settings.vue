@@ -1,16 +1,15 @@
 <template>
+  <section>
+    <Head title="Setting" />
     <h1>Setting</h1>
+  </section>
 </template>
 
 <script setup>
-import Layout from "../Shared/Layout.vue";
 </script>
 
 // default layout
 <script>
-export default {
-  layout: Layout,
-};
 </script>
 
 <style>

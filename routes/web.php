@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +23,7 @@ Route::get('/', function () {
 
 Route::get('/users', function () {
     return inertia('Users', [
-        'time' => now()->toTimeString()
+        'users' => User::paginate(10)
     ]);
 });
 
