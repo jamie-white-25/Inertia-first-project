@@ -10,7 +10,8 @@
             email and role.
           </p>
         </div>
-        <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+
+        <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex">
           <button
             type="button"
             class="
@@ -38,11 +39,48 @@
           </button>
         </div>
       </div>
+
       <div class="mt-8 flex flex-col">
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div
             class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8"
           >
+            <div class="w-1/4 mt-2 ml-auto">
+              <div class="mt-1 relative flex items-center">
+                <input
+                  v-model="search"
+                  type="text"
+                  name="search"
+                  id="search"
+                  class="
+                    shadow-sm
+                    focus:ring-teal-500 focus:border-teal-500
+                    block
+                    w-full
+                    pr-12
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                  "
+                />
+                <div class="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
+                  <kbd
+                    class="
+                      inline-flex
+                      items-center
+                      border border-gray-200
+                      rounded
+                      px-2
+                      text-sm
+                      font-sans font-medium
+                      text-gray-400
+                    "
+                  >
+                    ⌘K
+                  </kbd>
+                </div>
+              </div>
+            </div>
             <table class="min-w-full divide-y divide-gray-300">
               <thead>
                 <tr>
@@ -158,16 +196,28 @@
           </div>
         </div>
       </div>
-    <Pagination :links="users.links" />
+      <Pagination :links="users.links" />
     </div>
   </section>
 </template>
 
 <script setup>
-import  Pagination  from "../Shared/Pagination.vue";
+import { ref, watch } from "vue";
+import { Inertia } from "@inertiajs/inertia";
+import Pagination from "../Shared/Pagination.vue";
 
-defineProps({
+const props = defineProps({
   users: Object,
+  filters: Object,
+});
+
+let search = ref(props.filters.search);
+watch(search, (value) => {
+  Inertia.get(
+    "/users",
+    { search: value },
+    { preserveState: true, replace: true }
+  );
 });
 </script>
 

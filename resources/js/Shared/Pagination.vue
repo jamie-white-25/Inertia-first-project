@@ -35,7 +35,7 @@
               text-gray-600
               hover:bg-gray-50
             "
-            :class="{'bg-teal-600 text-white': link.active}"
+            :class="{ 'bg-teal-600 text-white': link.active }"
           />
 
           <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
