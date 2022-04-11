@@ -131,6 +131,7 @@
 <script setup>
 import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
+import debounce from "lodash/debounce";
 import Pagination from "../../Shared/Pagination.vue";
 
 const props = defineProps({
@@ -140,13 +141,16 @@ const props = defineProps({
 
 let search = ref(props.filters.search);
 
-watch(search, (value) => {
-    Inertia.get(
-        "/users",
-        { search: value },
-        { preserveState: true, replace: true }
-    );
-});
+watch(
+    search,
+    debounce(function (value) {
+        Inertia.get(
+            "/users",
+            { search: value },
+            { preserveState: true, replace: true }
+        );
+    }, 500)
+);
 </script>
 
 <style></style>
