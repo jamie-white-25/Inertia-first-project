@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +23,7 @@ Route::get('/', function () {
 });
 
 Route::get('/users', function () {
-    return inertia('Users', [
+    return inertia('Users/Index', [
         'users' => User::query()
             ->when(request()->search, function ($query, $search) {
                 $query->where('name', 'like', '%' . $search . '%');
@@ -31,6 +32,33 @@ Route::get('/users', function () {
             ->withQueryString(),
         'filters' => request()->only('search')
     ]);
+});
+
+Route::get("users/create", function () {
+    return inertia('Users/Create');
+});
+
+Route::post("/users", function (Request $request) {
+    $validated =  $request->validate([
+        'name' => [
+            'required',
+            "max:255",
+            "string"
+        ],
+        'email' => [
+            'required',
+            "max:255",
+            "string",
+            "email"
+        ],
+        'password' => ['required', "max:255", "string"],
+    ]);
+
+    $validated['password'] = Hash::make($validated['password']);
+
+    User::create($validated);
+
+    return redirect('/users');
 });
 
 Route::get('/settings', function () {
