@@ -8,7 +8,10 @@ import Layout from "./Shared/Layout.vue"
 createInertiaApp({
     resolve: async name => {
         let page = (await import(`./Pages/${name}`)).default
-        page.layout ??= Layout
+
+        if(page.layout === undefined){
+            page.layout = Layout
+        }
         return page
     }
     ,
