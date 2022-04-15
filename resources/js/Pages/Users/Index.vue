@@ -108,6 +108,7 @@
                                         class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0"
                                     >
                                         <Link
+                                            v-if="user.can.edit"
                                             :href="`/users/${user.id}/edit`"
                                             class="text-teal-600 hover:text-teal-900"
                                             >Edit<span class="sr-only"
@@ -132,7 +133,7 @@
 import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import debounce from "lodash/debounce";
-import Pagination from "../../Shared/Pagination.vue";
+import Pagination from "@/Shared/Pagination.vue";
 
 const props = defineProps({
     users: Object,

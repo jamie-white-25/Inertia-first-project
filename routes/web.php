@@ -18,6 +18,7 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 Route::get("/login", [LoginController::class, "create"])->name("login");
+Route::post("/login", [LoginController::class, "store"]);
 
 Route::middleware("auth")->group(function () {
 
@@ -34,7 +35,14 @@ Route::middleware("auth")->group(function () {
                     $query->where('name', 'like', '%' . $search . '%');
                 })
                 ->paginate(10)
-                ->withQueryString(),
+                ->withQueryString()
+                ->through(fn ($user) => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'can' => [
+                        'edit' => auth()->user()->can("edit", User::class)
+                    ]
+                ]),
             'filters' => request()->only('search')
         ]);
     });
@@ -70,5 +78,9 @@ Route::middleware("auth")->group(function () {
         return inertia('Settings');
     });
 
-    Route::post('/logout', fn (Request $request) => dd($request->data));
+    Route::post('/logout', function (Request $request) {
+        auth()->logout();
+
+        return redirect("/login");
+    });
 });
